@@ -69,6 +69,8 @@ void draw_meiro(void)
     printf("move:←↑→↓&restart:ESC\n"); //操作説明
 
 }
+/////
+
 
 
 int main()
