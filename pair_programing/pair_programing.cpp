@@ -73,5 +73,5 @@ void draw_meiro(void)
 
 int main()
 {
-
+   
 }
