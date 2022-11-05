@@ -70,13 +70,13 @@ void draw_meiro(void)
                 count++;                //塗った床をカウント
                 printf("人");           //プレイヤー 
             }
-            else if (meiro[x][y] == 0)printf("　");//塗りつぶしの種類
-            else if (meiro[x][y] == 1)printf("■");
-            else if (meiro[x][y] == 2)printf("○");
+            else if (meiro[x][y] == 0)std::cout<<"　"<<std::endl;//塗りつぶしの種類
+            else if (meiro[x][y] == 1)std::cout<<"■"<<std::endl;
+            else if (meiro[x][y] == 2)std::cout<<"○"<<std::endl;
         }
-        printf("\n");
+        std::cout << std::endl;
     }
-    printf("move:←↑→↓&restart:ESC\n"); //操作説明
+    std::cout<<"move:←↑→↓&restart:ESC"<<std::endl; //操作説明
 
 }
 /* キー入力判定 */
@@ -122,7 +122,7 @@ int main()
         draw_meiro();	/* 迷路を表示 */
 
         if (count == goal_count) {	/* 床を全て塗りつぶしたかのチェック */
-            printf("全て塗りました！\n");
+            std::cout << "全て塗りました！" << std::endl;
             break;
         }
 
