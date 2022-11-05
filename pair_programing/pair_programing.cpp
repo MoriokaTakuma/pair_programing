@@ -100,5 +100,23 @@ void key_input(void)
 
 int main()
 {
-   
+    px = 1;				/* プレイヤーのx座標 */
+    py = 1;				/* プレイヤーのy座標 */
+    count = 0;			/* 塗りつぶした床の数 */
+
+   // goal_count_check();	/* 塗りつぶすべき床の数をカウントする */
+
+    /* ゲームループ */
+    while (1) {
+        system("cls");	/* コンソール画面をクリア */
+        draw_meiro();	/* 迷路を表示 */
+
+        if (count == goal_count) {	/* 床を全て塗りつぶしたかのチェック */
+            printf("全て塗りました！\n");
+            break;
+        }
+
+        key_input();		/* キー入力受付 */
+    }
+    return 0;
 }
