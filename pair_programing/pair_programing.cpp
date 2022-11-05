@@ -50,7 +50,7 @@ void play_start(void)
 void draw_meiro(void)
 {
     int x, y;
-    for (x = 0; x < RETU; x++)      //
+    for (x = 0; x < RETU; x++)      
     {
         for (y = 0; y < GYO; y++)
         {
@@ -60,7 +60,7 @@ void draw_meiro(void)
                 count++;                //塗った床をカウント
                 printf("人");           //プレイヤー 
             }
-            else if (meiro[x][y] == 0)printf("　");
+            else if (meiro[x][y] == 0)printf("　");//塗りつぶしの種類
             else if (meiro[x][y] == 1)printf("■");
             else if (meiro[x][y] == 2)printf("○");
         }
