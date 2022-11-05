@@ -46,6 +46,16 @@ void play_start(void)
     }
 }
 
+/* 塗りつぶすべき床の数をカウントする */
+void goal_count_check(void)
+{
+    int x, y;
+    goal_count = 0;
+    for (y = 0; y < GYO; y++)
+        for (x = 0; x < RETU; x++)
+            if (meiro[y][x] == 0) goal_count++;		/* 移動可能な床の数をカウント */
+}
+
 //迷路を書く
 void draw_meiro(void)
 {
