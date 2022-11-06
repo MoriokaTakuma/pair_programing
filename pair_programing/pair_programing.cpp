@@ -1,5 +1,4 @@
-﻿
-#include<iostream>
+﻿#include<iostream>
 #include <stdio.h>
 #include<conio.h>
 #include<stdlib.h>
@@ -70,9 +69,9 @@ void draw_meiro(void)
                 count++;                //塗った床をカウント
                 printf("人");           //プレイヤー 
             }
-            else if (meiro[x][y] == 0)std::cout<<"　"<<std::endl;//塗りつぶしの種類
-            else if (meiro[x][y] == 1)std::cout<<"■"<<std::endl;
-            else if (meiro[x][y] == 2)std::cout<<"○"<<std::endl;
+            else if (meiro[x][y] == 0)std::cout<<"　";//塗りつぶしの種類
+            else if (meiro[x][y] == 1)std::cout<<"■";
+            else if (meiro[x][y] == 2)std::cout<<"○";
         }
         std::cout << std::endl;
     }
