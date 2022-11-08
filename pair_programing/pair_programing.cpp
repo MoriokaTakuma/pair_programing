@@ -59,7 +59,7 @@ void goal_count_check(void)
 void draw_meiro(void)
 {
     int x, y;
-    for (y = 0; y < GYO; y++)      
+    for (y = 0; y < GYO; y++)
     {
         for (x = 0; x < RETU; x++)
         {
@@ -69,13 +69,13 @@ void draw_meiro(void)
                 count++;                //塗った床をカウント
                 printf("人");           //プレイヤー 
             }
-            else if (meiro[y][x] == 0)std::cout<<"　";//塗りつぶしの種類
-            else if (meiro[y][x] == 1)std::cout<<"■";
-            else if (meiro[y][x] == 2)std::cout<<"○";
+            else if (meiro[y][x] == 0)std::cout << "　";//塗りつぶしの種類
+            else if (meiro[y][x] == 1)std::cout << "■";
+            else if (meiro[y][x] == 2)std::cout << "○";
         }
         std::cout << std::endl;
     }
-    std::cout<<"move:←↑→↓&restart:ESC"<<std::endl; //操作説明
+    std::cout << "move:←↑→↓&restart:ESC" << std::endl; //操作説明
 
 }
 /* キー入力判定 */
