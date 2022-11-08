@@ -36,9 +36,9 @@ void play_start(void)
 
     py = 1;
 
-    for (x = 0; x < RETU; x++)
+    for (y = 0; y < GYO; y++)
     {
-        for (y = 0; y < GYO; y++)
+        for (x = 0; x < RETU; x++)
         {
             if (meiro[x][y] == 2)meiro[x][y] = 0; //床が塗られて(x,y = 2)たら元に戻す(0に戻す)
         }
@@ -59,19 +59,19 @@ void goal_count_check(void)
 void draw_meiro(void)
 {
     int x, y;
-    for (x = 0; x < RETU; x++)      
+    for (y = 0; y < GYO; y++)      
     {
-        for (y = 0; y < GYO; y++)
+        for (x = 0; x < RETU; x++)
         {
             if (x == px && y == py)     //プレイヤーの場所        
             {
-                meiro[x][y] = 2;        //塗りつぶし    
+                meiro[y][x] = 2;        //塗りつぶし    
                 count++;                //塗った床をカウント
                 printf("人");           //プレイヤー 
             }
-            else if (meiro[x][y] == 0)std::cout<<"　";//塗りつぶしの種類
-            else if (meiro[x][y] == 1)std::cout<<"■";
-            else if (meiro[x][y] == 2)std::cout<<"○";
+            else if (meiro[y][x] == 0)std::cout<<"　";//塗りつぶしの種類
+            else if (meiro[y][x] == 1)std::cout<<"■";
+            else if (meiro[y][x] == 2)std::cout<<"○";
         }
         std::cout << std::endl;
     }
