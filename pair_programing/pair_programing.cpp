@@ -1,32 +1,7 @@
-﻿#include<iostream>
-#include <stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-
-#define GYO  10
-#define RETU 10
-
-//迷路データ
-int meiro[GYO][RETU] = {
-    {1,1,1,1,1,1,1,1,1,1,},
-    {1,0,0,0,0,0,1,0,0,1,},
-    {1,1,1,1,1,0,1,0,0,1,},
-    {1,0,0,0,0,0,1,0,0,1,},
-    {1,0,0,0,1,1,1,0,0,1,},
-    {1,0,0,0,0,0,0,0,0,1,},
-    {1,1,1,1,1,1,1,1,0,1,},
-    {1,1,0,0,0,0,0,1,0,1,},
-    {1,1,0,0,0,0,0,0,0,1,},
-    {1,1,1,1,1,1,1,1,1,1,},
-};
-
-int px, py;		/* プレイヤーのxy座標 */
-int goal_count;	/* 塗りつぶすべき床の数 */
-int count;		/* 塗りつぶした床の数 */
-
+﻿#include"class.h"
 
 //最初の状態に戻す
-void play_start(void)
+void Game::play_start(void)
 {
     int x, y;
 
@@ -46,7 +21,7 @@ void play_start(void)
 }
 
 /* 塗りつぶすべき床の数をカウントする */
-void goal_count_check(void)
+void Game::goal_count_check(void)
 {
     int x, y;
     goal_count = 0;
@@ -56,7 +31,7 @@ void goal_count_check(void)
 }
 
 //迷路を書く
-void draw_meiro(void)
+void Game::draw_meiro(void)
 {
     int x, y;
     for (y = 0; y < GYO; y++)
@@ -79,7 +54,7 @@ void draw_meiro(void)
 
 }
 /* キー入力判定 */
-void key_input(void)
+void Game::key_input(void)
 {
     int key;
     while (1) {	/* キーが押されるまで待つ */
@@ -109,23 +84,27 @@ void key_input(void)
 
 int main()
 {
-    px = 1;				/* プレイヤーのx座標 */
-    py = 1;				/* プレイヤーのy座標 */
-    count = 0;			/* 塗りつぶした床の数 */
+    Game* pgame = new Game;
 
-    goal_count_check();	/* 塗りつぶすべき床の数をカウントする */
+    pgame->goal_count_check();
 
     /* ゲームループ */
     while (1) {
         system("cls");	/* コンソール画面をクリア */
-        draw_meiro();	/* 迷路を表示 */
+        pgame -> draw_meiro();	/* 迷路を表示 */
 
-        if (count == goal_count) {	/* 床を全て塗りつぶしたかのチェック */
+        if (pgame->count == pgame->goal_count) {	/* 床を全て塗りつぶしたかのチェック */
             std::cout << "全て塗りました！" << std::endl;
+            delete pgame;
+            if (pgame != nullptr)
+            {
+                pgame = nullptr;
+            }
             break;
+            pgame->play_start();
         }
 
-        key_input();		/* キー入力受付 */
+        pgame->key_input();		/* キー入力受付 */
     }
     return 0;
 }
