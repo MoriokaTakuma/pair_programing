@@ -1,5 +1,47 @@
 ﻿#include"class.h"
 
+
+int scene;
+//タイトルクラスー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+void Title::draw_meiro(void)
+{
+    int x, y;
+    for (y = 0; y < GYO; y++)
+    {
+        for (x = 0; x < RETU; x++)
+        {
+            if (title[y][x] == 0)std::cout << "　";
+            else if (title[y][x] == 1)std::cout << "■";
+            else if (title[y][x] == 2)std::cout << "□";
+            else if (title[y][x] == 3)std::cout << "／";
+            else if (title[y][x] == 4)std::cout << "＼";
+            else if (title[y][x] == 5)std::cout << "|";
+            else if (title[y][x] == 6)std::cout << "Ａ";
+
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "<<Press Space Key>>" << std::endl;
+}
+/* キー入力判定 */
+void Title::key_input(void)
+{
+    int key;
+    while (1) {	/* キーが押されるまで待つ */
+        if (_kbhit()) {
+            key = _getch();	/* 入力されたキー番号 */
+            break;
+        }
+    }
+    if (key == 32) { scene++; }
+
+    else											/* 上記以外のキーの場合は */
+        key_input();								/* 再度キー入力受付 */
+}
+//ー－－－－ー－ー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+
+
 //最初の状態に戻す
 void Game::play_start(void)
 {
@@ -84,27 +126,60 @@ void Game::key_input(void)
 
 int main()
 {
-    Game* pgame = new Game;
-
-    pgame->goal_count_check();
-
-    /* ゲームループ */
-    while (1) {
-        system("cls");	/* コンソール画面をクリア */
-        pgame -> draw_meiro();	/* 迷路を表示 */
-
-        if (pgame->count == pgame->goal_count) {	/* 床を全て塗りつぶしたかのチェック */
-            std::cout << "全て塗りました！" << std::endl;
-            delete pgame;
-            if (pgame != nullptr)
-            {
-                pgame = nullptr;
-            }
-            break;
-            pgame->play_start();
-        }
-
-        pgame->key_input();		/* キー入力受付 */
+    switch (scene)
+    {
+    default:
+    case 1:
+    {
+        Title title;
+        title.draw_meiro();
+        title.key_input();
     }
-    return 0;
+
+    case 2:
+    {
+        Game* pgame = new Game;
+        pgame->goal_count_check();
+
+        /* ゲームループ */
+        while (1) {
+            system("cls");	/* コンソール画面をクリア */
+            pgame->draw_meiro();	/* 迷路を表示 */
+
+            if (pgame->count == pgame->goal_count) {	/* 床を全て塗りつぶしたかのチェック */
+                std::cout << "全て塗りました！" << std::endl;
+                scene++;
+                delete pgame;
+                if (pgame != nullptr)
+                {
+                    pgame = nullptr;
+                }
+                break;
+                pgame->play_start();
+            }
+
+            pgame->key_input();		/* キー入力受付 */
+        }
+    }
+    case 3:
+    {
+        stage2 s2;
+
+        /* ゲームループ */
+        while (1) {
+            system("cls");	/* コンソール画面をクリア */
+            s2.draw_meiro();	/* 迷路を表示 */
+
+            if (s2.count == s2.goal_count) {	/* 床を全て塗りつぶしたかのチェック */
+                std::cout << "全て塗りました！" << std::endl;
+                scene++;
+                break;
+                s2.play_start();
+            }
+
+            s2.key_input();		/* キー入力受付 */
+        }
+        //return 0;
+    }
+    }
 }
