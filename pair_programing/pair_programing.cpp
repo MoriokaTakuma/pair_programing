@@ -96,10 +96,8 @@ int main()
         if (pgame->count == pgame->goal_count) {	/* 床を全て塗りつぶしたかのチェック */
             std::cout << "全て塗りました！" << std::endl;
             delete pgame;
-            if (pgame != nullptr)
-            {
-                pgame = nullptr;
-            }
+            pgame = nullptr;
+            
             break;
             pgame->play_start();
         }
