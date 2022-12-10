@@ -3,7 +3,7 @@
 
 int scene;
 //タイトルクラスー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-void Title::draw_meiro(void)
+void Title::draw_title(void)
 {
     int x, y;
     for (y = 0; y < GYO; y++)
@@ -24,7 +24,7 @@ void Title::draw_meiro(void)
     std::cout << "<<Press Space Key>>" << std::endl;
 }
 /* キー入力判定 */
-void Title::key_input(void)
+void Title::key_input_t(void)
 {
     int key;
     while (1) {	/* キーが押されるまで待つ */
@@ -36,7 +36,7 @@ void Title::key_input(void)
     if (key == 32) { scene++; }
 
     else											/* 上記以外のキーの場合は */
-        key_input();								/* 再度キー入力受付 */
+        key_input_t();								/* 再度キー入力受付 */
 }
 //ー－－－－ー－ー－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
@@ -132,13 +132,12 @@ int main()
     case 1:
     {
         Title title;
-        title.draw_meiro();
-        title.key_input();
+        title.draw_title();
+        title.key_input_t();
     }
 
     case 2:
-    {
-        Game* pgame = new Game;
+        Game * pgame = new Game;
         pgame->goal_count_check();
 
         /* ゲームループ */
@@ -148,7 +147,6 @@ int main()
 
             if (pgame->count == pgame->goal_count) {	/* 床を全て塗りつぶしたかのチェック */
                 std::cout << "全て塗りました！" << std::endl;
-                scene++;
                 delete pgame;
                 if (pgame != nullptr)
                 {
@@ -161,25 +159,5 @@ int main()
             pgame->key_input();		/* キー入力受付 */
         }
     }
-    case 3:
-    {
-        stage2 s2;
-
-        /* ゲームループ */
-        while (1) {
-            system("cls");	/* コンソール画面をクリア */
-            s2.draw_meiro();	/* 迷路を表示 */
-
-            if (s2.count == s2.goal_count) {	/* 床を全て塗りつぶしたかのチェック */
-                std::cout << "全て塗りました！" << std::endl;
-                scene++;
-                break;
-                s2.play_start();
-            }
-
-            s2.key_input();		/* キー入力受付 */
-        }
-        //return 0;
-    }
-    }
+    return 0;
 }
